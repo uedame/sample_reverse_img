@@ -1,0 +1,111 @@
+/**********    全体    **********/
+* {
+	margin: 0;
+	padding: 0 3%;
+	box-sizing: border-box;
+}
+
+main {
+	text-align: center;
+	justify-content: center;
+	width: 100%;
+}
+.text {
+	width: 55%;
+	text-align: center;
+}
+
+.text__title {
+	height: 60px;
+	margin-top: 30px;
+}
+
+.text__text {
+	padding: 0 5%;
+}
+
+.image {
+	width: 45%;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/**********    セクション    **********/
+/* セクション自体、注意はpositionつける */
+section {
+	margin-top: 30px;
+	background-color: #eee;
+	justify-content: center;
+	display: flex;
+	position: relative;
+	overflow: hidden;
+}
+/* セクションの疑似要素、注意はpositionつける */
+section::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	background: #333;
+	/* アクティブ外れた時の戻り方 */
+	transition: all 0.6s;
+}
+/* 偶数番目は逆配置 */
+section:nth-child(2n) {
+	flex-direction: row-reverse;
+}
+/* JSでアクティブにした時の疑似要素 */
+section.rightOpen::before{
+	transition: all 0.6s;
+	transform: translateX(100%);
+}
+section.leftOpen::before{
+	transition: all 0.6s;
+	transform: translateX(-100%);
+}
+/* パターン２ */
+section.p2::before {
+	content: '';
+	opacity: 1;
+	background: #fff;
+}
+/* パターン３ もはやrightOpenではないけど*/
+section.p3.rightOpen::before{
+	transform: translateY(100%);
+}
+section.p3.leftOpen::before{
+	transform: translateY(-100%);
+}
+section.p3::before {
+	content: '';
+	opacity: 1;
+	background: #fff;
+}
+
+/* パターン４ これはmask要素作った*/
+/* セクションの疑似要素は邪魔なので透明にした */
+section:nth-child(n+18)::before {
+	opacity: 0;
+}
+section .mask{
+	position: absolute;
+	opacity: 1;
+	background: #fff;
+	clip-path: polygon(30% 0%,100% 0%,100% 100%,0% 100%);
+	width: 150%;
+	height: 300px;
+	transform: translateX(-14%);
+	transition: all 1.6s;
+	z-index: 4;
+}
+/* パターン４ これはmask要素作った*/
+section.rightOpen .mask {
+	transition: all 1.6s;
+	transform: translateX(80%);
+}
+
