@@ -87,25 +87,20 @@ section.p3::before {
 	background: #fff;
 }
 
-/* パターン４ これはmask要素作った*/
-/* セクションの疑似要素は邪魔なので透明にした */
-section:nth-child(n+18)::before {
-	opacity: 0;
+/* パターン４ もはやrightOpenではないけど*/
+section.p4.rightOpen::before{
+	transform: translateX(100%);
+	transition: all 1.6s;
 }
-section .mask{
-	position: absolute;
+section.p4::before {
+	content: '';
 	opacity: 1;
 	background: #fff;
-	clip-path: polygon(30% 0%,100% 0%,100% 100%,0% 100%);
-	width: 150%;
-	height: 300px;
-	transform: translateX(-14%);
-	transition: all 1.6s;
-	z-index: 4;
+	width: 140%;
+	height: 100%;
+	top: 0;
+	/* width: 140%;だから、左に40%ずらす */
+	left: -40%;
+	/* 28%は画面でマスクを確認しながら導いた、計算できない？ */
+	clip-path: polygon(28% 0%,100% 0%,100% 100%,0% 100%);
 }
-/* パターン４ これはmask要素作った*/
-section.rightOpen .mask {
-	transition: all 1.6s;
-	transform: translateX(80%);
-}
-
